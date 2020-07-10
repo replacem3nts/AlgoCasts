@@ -97,6 +97,49 @@ class LinkedList {
         }
         return null
     }
+
+    removeAt(index) {
+        if(!this.head) {
+            return
+        }
+
+        if(index === 0) {
+            this.head = this.head.next
+        } 
+        
+        let previous = this.getAt(index - 1)
+        if(!previous || !previous.next) {
+            return 
+        }
+
+        previous.next = previous.next.next
+    }
+
+    insertAt(data, index) {
+        if(!this.head || index === 0) {
+            this.head = new Node(data, this.head)
+            return
+        }
+
+        let previous = this.getAt(index - 1) || this.getLast()
+        previous.next = new Node(data, previous.next)
+    }
+
+    forEach(fn) {
+        let node = this.head
+        while(node) {
+            fn(node)
+            node = node.next
+        }
+    }
+
+    *[Symbol.iterator]() {
+        let node = this.head
+        while(node) {
+            yield node
+            node = node.next
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
