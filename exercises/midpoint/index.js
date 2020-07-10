@@ -12,6 +12,27 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+function midpoint(list) {
+    let slow = list.getFirst()
+    let fast = list.getFirst()
+
+    while(fast.next && fast.next.next) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+
+    return slow
+}
 
 module.exports = midpoint;
+
+// MY SOLVE
+// function midpoint(list) {
+//     let nodeArr = []
+
+//     for (let node of list){
+//         nodeArr.push(node)
+//     }
+    
+//     return nodeArr[Math.floor((nodeArr.length - 1)/ 2)]
+// }
